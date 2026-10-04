@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Miori Studio - รีวิวสินค้า</title>
+<title>Pinkie Studio - รีวิวสินค้า</title>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- Google Fonts: Kanit, Mitr & Itim -->
@@ -104,25 +104,12 @@ html, body {
   <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
 </audio>
 
-<!-- Admin Top Banner -->
-<div id="adminBanner" class="hidden text-white py-2 px-4 text-center text-xs font-medium shadow-md flex justify-between items-center transition-all duration-300 max-w-md mx-auto w-full rounded-b-xl" style="background-color: var(--color-main);">
-  <div class="flex items-center space-x-2">
-    <span class="bg-white text-gray-800 text-[10px] px-2.5 py-0.5 rounded-full font-bold shadow-sm">ADMIN MODE</span>
-    <span class="text-[11px] truncate">โหมดผู้ดูแลระบบ</span>
-  </div>
-  <div class="flex items-center space-x-1">
-    <button onclick="logoutAdmin()" class="bg-white/20 hover:bg-white/30 text-white text-[10px] px-2.5 py-1 rounded-full transition duration-200 shrink-0 border border-white/30">
-      <i class="fa-solid fa-sign-out-alt mr-1"></i> ออกจากระบบ
-    </button>
-  </div>
-</div>
-
 <!-- Header / Navbar -->
 <header class="backdrop-blur-md sticky top-0 z-40 border-b dynamic-border shadow-sm max-w-md mx-auto w-full transition-colors duration-300" style="background-color: var(--color-header);">
   <div class="px-4 py-2.5 flex items-center justify-between">
     <div class="flex items-center space-x-2">
       <a href="#" class="flex items-center space-x-2 group">
-        <!-- ใส่รูปโลโก้: ไม่มีชื่อ 29_20261004124605.png -->
+        <!-- โลโก้ร้าน -->
         <div class="w-9 h-9 rounded-full dynamic-bg-light flex items-center justify-center dynamic-text text-lg font-bold shadow-inner group-hover:scale-105 transition overflow-hidden shrink-0 border dynamic-border">
           <img src="ไม่มีชื่อ 29_20261004124605.png" alt="Store Logo" class="w-full h-full object-cover">
         </div>
@@ -136,9 +123,6 @@ html, body {
       <button id="musicToggleBtn" onclick="toggleMusic()" class="relative dynamic-text hover:opacity-80 transition dynamic-bg-light rounded-full w-8 h-8 flex items-center justify-center shadow-sm shrink-0 border dynamic-border">
         <i id="musicIcon" class="fa-solid fa-music text-xs"></i>
       </button>
-      <button id="adminLoginBtn" onclick="openAdminModal()" class="text-xs dynamic-bg-light hover:opacity-80 dynamic-text h-8 px-3 rounded-full font-medium transition flex items-center space-x-1 shrink-0 border dynamic-border">
-        <i class="fa-solid fa-lock text-[10px]"></i> <span id="adminBtnText">แอดมิน</span>
-      </button>
     </div>
   </div>
 </header>
@@ -146,7 +130,7 @@ html, body {
 <!-- MAIN CONTENT -->
 <main class="max-w-md mx-auto px-3 py-4 flex-grow w-full">
   <section id="page-reviews" class="space-y-4 max-w-md mx-auto">
-    <!-- ใส่รูปแบนเนอร์: ไม่มีชื่อ 24_20261003034727.png -->
+    <!-- แบนเนอร์ร้าน -->
     <div class="relative w-full aspect-banner dynamic-bg-light rounded-2xl overflow-hidden border-2 dynamic-border shadow-sm group">
       <img id="aboutBannerImg" src="ไม่มีชื่อ 24_20261003034727.png" alt="Store Banner" class="w-full h-full object-cover">
     </div>
@@ -237,20 +221,6 @@ html, body {
   </div>
 </div>
 
-<!-- ADMIN LOGIN MODAL -->
-<div id="adminModal" class="fixed inset-0 bg-black/40 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-  <div class="bg-white rounded-3xl max-w-xs w-full p-5 shadow-2xl border-2 dynamic-border relative space-y-3 text-center text-gray-700">
-    <button onclick="closeAdminModal()" class="absolute top-4 right-4 text-gray-400 hover:text-rose-400"><i class="fa-solid fa-circle-xmark text-xl"></i></button>
-    <div class="w-10 h-10 dynamic-bg-light dynamic-text rounded-full flex items-center justify-center mx-auto text-lg shadow-inner border dynamic-border">🔒</div>
-    <h3 class="font-heading text-sm font-medium">เข้าสู่ระบบแอดมิน</h3>
-    <div class="space-y-2">
-      <input type="email" id="adminEmail" placeholder="อีเมล Gmail (admin@gmail.com)" class="w-full dynamic-bg-light border dynamic-border rounded-xl px-3 py-1.5 text-center focus:outline-none">
-      <input type="password" id="adminPassword" placeholder="รหัสผ่าน" class="w-full dynamic-bg-light border dynamic-border rounded-xl px-3 py-1.5 text-center focus:outline-none">
-    </div>
-    <button onclick="loginAdmin()" class="cute-btn w-full py-1.5 rounded-full text-xs font-medium shadow-sm">เข้าสู่ระบบ</button>
-  </div>
-</div>
-
 <footer class="bg-white/80 border-t dynamic-border py-4 text-center text-[10px] opacity-70 mt-6 max-w-md mx-auto w-full font-cute">
   <p>© 2026 Pinkie Studio Store. Made with 💖 for Pastel Lovers</p>
 </footer>
@@ -279,7 +249,6 @@ try {
 
 // --- 2. GLOBAL STATES
 let reviews = [];
-let isAdmin = localStorage.getItem('pinkie_is_admin') === 'true';
 let currentSelectedRating = 5;
 let isPlaying = false;
 
@@ -305,10 +274,6 @@ if (rtdb) {
     renderReviews();
   });
 }
-
-window.addEventListener('DOMContentLoaded', () => {
-  updateAdminUI();
-});
 
 // --- 4. REVIEWS SYSTEM (AUTO-DISPLAY) ---
 function setSelectRating(r) {
@@ -353,12 +318,6 @@ function handleCustomerSubmitReview(e) {
   });
 }
 
-function deleteReview(id) {
-  if (confirm('ต้องการลบรีวิวนี้ใช่หรือไม่?') && rtdb) {
-    rtdb.ref(`reviews/${id}`).remove();
-  }
-}
-
 function renderReviews() {
   const approvedContainer = document.getElementById('approvedReviewsContainer');
   if (!approvedContainer) return;
@@ -394,62 +353,10 @@ function renderReviews() {
         <span class="text-[9px] opacity-60 font-cute">${r.date || ''}</span>
       </div>
       <p class="text-[11px] text-gray-600 leading-relaxed">${r.comment || ''}</p>
-      ${isAdmin ? `<button onclick="deleteReview('${r.id}')" class="absolute bottom-2 right-2 text-rose-300 hover:text-rose-500 text-xs transition"><i class="fa-solid fa-trash"></i></button>` : ''}
     `;
     fragment.appendChild(card);
   });
   approvedContainer.appendChild(fragment);
-}
-
-// --- 5. ADMIN CONTROLS ---
-function openAdminModal() {
-  document.getElementById('adminModal').classList.remove('hidden');
-}
-
-function closeAdminModal() {
-  document.getElementById('adminModal').classList.add('hidden');
-}
-
-function hashSimpleStr(str) {
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) {
-    hash = ((hash << 5) - hash) + str.charCodeAt(i);
-    hash |= 0;
-  }
-  return hash;
-}
-
-function loginAdmin() {
-  const email = document.getElementById('adminEmail').value.trim().toLowerCase();
-  const pwd = document.getElementById('adminPassword').value;
-  if (email.endsWith('@gmail.com') && (hashSimpleStr(email) === -1051523306 || email === 'admin@gmail.com') && (hashSimpleStr(pwd) === 1509442 || pwd === '1234')) {
-    isAdmin = true;
-    localStorage.setItem('pinkie_is_admin', 'true');
-    updateAdminUI();
-    renderReviews();
-    closeAdminModal();
-    document.getElementById('adminEmail').value = '';
-    document.getElementById('adminPassword').value = '';
-    alert('เข้าสู่ระบบผู้ดูแลระบบสำเร็จ!');
-  } else {
-    alert('อีเมล Gmail หรือรหัสผ่านไม่ถูกต้อง');
-  }
-}
-
-function logoutAdmin() {
-  isAdmin = false;
-  localStorage.setItem('pinkie_is_admin', 'false');
-  updateAdminUI();
-  renderReviews();
-  alert('ออกจากระบบแอดมินเรียบร้อยแล้วค่ะ');
-}
-
-function updateAdminUI() {
-  const el = document.getElementById('adminBanner');
-  if (el) {
-    if (isAdmin) el.classList.remove('hidden');
-    else el.classList.add('hidden');
-  }
 }
 </script>
 </body>
